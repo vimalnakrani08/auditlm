@@ -1,0 +1,26 @@
+{
+  "_comment": "Phase 3B run-1 QLoRA config. Same base as the baseline (ollama:llama3.1:8b = Llama-3.1-8B-Instruct) so Base->SFT is apples-to-apples. Modest config: small rank + few epochs to avoid overfitting at ~400-600 demos.",
+  "base_model_hf": "meta-llama/Llama-3.1-8B-Instruct",
+  "base_model_mlx": "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit",
+  "method": "qlora",
+  "quantization": "4bit",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  },
+  "train": {
+    "epochs": 2,
+    "learning_rate": 2e-4,
+    "lr_schedule": "cosine",
+    "warmup_ratio": 0.03,
+    "per_device_batch_size": 1,
+    "grad_accum_steps": 8,
+    "max_seq_len": 4096,
+    "train_on_completions_only": true,
+    "seed": 42
+  },
+  "chat_template": "llama-3.1-instruct",
+  "serving": "fuse/merge adapter -> GGUF (llama.cpp) -> quantize Q4_K_M -> ollama create auditlm -> eval rag:ollama:auditlm (tiered grounding)"
+}

@@ -1,0 +1,8 @@
+# RAG component — local artifacts, regenerable; never tracked.
+.venv/
+index/
+__pycache__/
+*.pyc
+
+# scratch logs
+*.log

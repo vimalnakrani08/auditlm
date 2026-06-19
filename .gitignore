@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Environment / secrets
+.env
+*.key
+.claude/
+
+# Planning / internal docs — local only. Covers CLAUDE.md and the phase*_spec.md specs.
+# (NOT the public guide/README/CORPUS_STATS, and NOT rag/PHASE3A_RAG_RESULTS.md.)
+CLAUDE.md
+*_spec.md
+
+# Model weights & fine-tuning artifacts (regenerable; release via HF Hub, not git)
+*.gguf
+*.safetensors
+*.bin
+*.pt
+training/adapter*/
+training/fused/
+training/data/mlx_*/
+
+# Build artifacts / caches (rebuild from source)
+verify/data/identifier_index.json
+*.faiss
+*.index
+embeddings_cache/
+data/raw/
+data/cache/
+data/raw_html/
+
+# Derived corpus outputs (regenerable from the per-source collector files via the pipeline)
+data/corpus/unified.jsonl
+data/corpus/chunks.jsonl
+
+# Eval run outputs (regenerable; scorecards live in assurancebench/results/)
+runs/
+demo/build.log
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Internal planning docs (local only)
+*_PLAN.md

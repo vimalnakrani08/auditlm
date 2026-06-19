@@ -1,0 +1,27 @@
+# Phase 3B run-1 QLoRA — MLX-LM. Base = Llama-3.1-8B-Instruct (4-bit), same model the
+# baseline serves as ollama:llama3.1:8b. Completions-only (mask_prompt). 2 epochs over
+# 357 train demos at batch 2 -> 358 iters. NOTE on conventions: mlx 'scale' is a DIRECT
+# LoRA multiplier (not HF alpha/r); default num_layers keys = all attention+MLP projections
+# in the last 16 layers. lr 1e-5 is the mlx-LoRA default (HF QLoRA's 2e-4 is for bnb).
+model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+train: true
+fine_tune_type: lora
+optimizer: adamw
+data: "data/mlx"
+seed: 42
+num_layers: 16
+batch_size: 2
+iters: 358
+val_batches: 8
+learning_rate: 1.0e-5
+steps_per_report: 10
+steps_per_eval: 60
+save_every: 179
+adapter_path: "adapter"
+max_seq_length: 4096
+grad_checkpoint: true
+mask_prompt: true
+lora_parameters:
+  rank: 16
+  scale: 20.0
+  dropout: 0.05

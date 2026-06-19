@@ -1,0 +1,13 @@
+# Training artifacts — large / regenerable / local. Never tracked.
+.venv/
+__pycache__/
+*.pyc
+*.log
+
+# model weights, adapters, GGUF, base-model caches (large)
+adapter/
+fused/
+*.gguf
+*.safetensors
+models/
+hf_cache/

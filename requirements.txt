@@ -1,0 +1,6 @@
+httpx>=0.28
+beautifulsoup4>=4.14
+polars>=1.41
+pypdf>=4.0
+tokenizers>=0.20
+gradio>=5.0
